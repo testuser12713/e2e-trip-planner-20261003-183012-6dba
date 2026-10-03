@@ -52,6 +52,41 @@ describe('store initialization', () => {
     expect(result.current.state.trips).toHaveLength(1);
     expect(result.current.state.trips[0].destination).toBe('Paris');
   });
+
+  it('drops activities whose category is not a valid CategoryId', () => {
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({
+        trips: [],
+        activities: [
+          {
+            id: 'a1',
+            tripId: 'trip-1',
+            day: '2026-01-01',
+            time: '09:00',
+            location: 'Mitte',
+            cost: 10,
+            category: 'food',
+            note: '',
+          },
+          {
+            id: 'a2',
+            tripId: 'trip-1',
+            day: '2026-01-01',
+            time: '10:00',
+            location: 'Mitte',
+            cost: 20,
+            category: 'not-a-category',
+            note: '',
+          },
+        ],
+        packingItems: [],
+      }),
+    );
+    const { result } = renderHook(() => useStore(), { wrapper });
+    expect(result.current.state.activities).toHaveLength(1);
+    expect(result.current.state.activities[0].id).toBe('a1');
+  });
 });
 
 describe('trip actions', () => {

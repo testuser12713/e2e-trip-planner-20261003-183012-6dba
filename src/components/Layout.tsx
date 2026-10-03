@@ -16,10 +16,10 @@ export default function Layout() {
             <NavLink to="/" end className={navLinkClass}>
               Reiseliste
             </NavLink>
-            <NavLink to="/trips/new" className={navLinkClass}>
-              Neue Reise
-            </NavLink>
           </nav>
+          <NavLink to="/trips/new" className="button">
+            Neue Reise
+          </NavLink>
         </div>
       </header>
       <main className="page-container">

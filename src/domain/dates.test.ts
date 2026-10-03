@@ -39,6 +39,11 @@ describe('generateDayKeys', () => {
     expect(generateDayKeys('not-a-date', '2026-01-01')).toEqual([]);
     expect(generateDayKeys('2026-01-01', '')).toEqual([]);
   });
+
+  it('rejects impossible calendar dates', () => {
+    expect(generateDayKeys('2026-02-31', '2026-03-01')).toEqual([]);
+    expect(generateDayKeys('2026-13-01', '2026-01-01')).toEqual([]);
+  });
 });
 
 describe('computeDurationDays', () => {

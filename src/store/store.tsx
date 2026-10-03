@@ -7,6 +7,7 @@ import {
   useState,
   type ReactNode,
 } from 'react';
+import { CATEGORIES } from '../types';
 import type { Activity, AppState, CategoryId, PackingItem, Trip } from '../types';
 
 export const STORAGE_KEY = 'trip-planner:state:v1';
@@ -20,6 +21,12 @@ function generateId(prefix: string): string {
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null;
+}
+
+const CATEGORY_IDS = new Set<string>(CATEGORIES.map((category) => category.id));
+
+function isCategoryId(value: unknown): value is CategoryId {
+  return typeof value === 'string' && CATEGORY_IDS.has(value);
 }
 
 function isValidTrip(value: unknown): value is Trip {
@@ -42,7 +49,7 @@ function isValidActivity(value: unknown): value is Activity {
     typeof value.time === 'string' &&
     typeof value.location === 'string' &&
     typeof value.cost === 'number' &&
-    typeof value.category === 'string' &&
+    isCategoryId(value.category) &&
     typeof value.note === 'string'
   );
 }
