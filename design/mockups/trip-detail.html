@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reiseplaner — Tagesplan Rom</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header" data-od-id="app-header">
+    <div class="app-header__inner">
+      <a class="brand" href="index.html" data-od-id="brand">
+        <span class="brand__mark" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M8 14.5C5 11 2.5 8.6 2.5 5.8A3.3 3.3 0 0 1 8 3.6a3.3 3.3 0 0 1 5.5 2.2C13.5 8.6 11 11 8 14.5Z" stroke="#fff" stroke-width="1.5"/>
+            <circle cx="8" cy="5.8" r="1.4" fill="#fff"/>
+          </svg>
+        </span>
+        Reiseplaner
+      </a>
+      <nav class="nav-tabs" aria-label="Hauptnavigation">
+        <a class="nav-tabs__item" href="index.html" data-od-id="nav-reisen">Reisen</a>
+        <a class="nav-tabs__item is-active" href="trip-detail.html" aria-current="page" data-od-id="nav-tagesplan">Tagesplan</a>
+        <a class="nav-tabs__item" href="budget.html" data-od-id="nav-budget">Budget</a>
+        <a class="nav-tabs__item" href="packliste.html" data-od-id="nav-packliste">Packliste</a>
+      </nav>
+      <a class="btn btn--primary" href="#activity-add" data-od-id="btn-add-activity">+ Aktivität</a>
+    </div>
+  </header>
+
+  <main class="page-container" data-od-id="trip-detail-page">
+    <div class="trip-context">
+      <a class="trip-context__back" href="index.html" data-od-id="back-to-list">‹ Alle Reisen</a>
+      <span class="trip-context__title" data-od-id="trip-name">Rom</span>
+      <span class="badge badge--neutral" data-od-id="trip-dates">12. – 18. Mai 2026</span>
+    </div>
+
+    <div class="page-head">
+      <div>
+        <h1 class="page-title" data-od-id="page-title">Tagesplan</h1>
+        <p class="page-subtitle">7 Tage · Aktivitäten chronologisch nach Uhrzeit sortiert</p>
+      </div>
+    </div>
+
+    <div class="detail-grid">
+      <!-- Day plan column -->
+      <section class="day-list" aria-label="Tagesplan" data-od-id="day-list">
+
+        <!-- Day 1 -->
+        <article class="card day-card" data-od-id="day-1">
+          <div class="day-card__head">
+            <h2 class="day-card__title">Tag 1 · Dienstag, 12. Mai</h2>
+            <span class="day-card__sum">Summe: 115 €</span>
+          </div>
+          <ul class="activity-list">
+            <li class="activity-item" data-od-id="activity-1-1">
+              <span class="activity-time">09:30</span>
+              <div class="activity-body">
+                <div class="activity-title">Anreise &amp; Flug</div>
+                <div class="activity-location">BER → Flughafen Fiumicino (FCO)</div>
+                <div class="activity-note">Boarding 08:50, Handgepäck</div>
+              </div>
+              <span class="activity-cost">45 €</span>
+            </li>
+            <li class="activity-item" data-od-id="activity-1-2">
+              <span class="activity-time">13:00</span>
+              <div class="activity-body">
+                <div class="activity-title">Check-in Hotel Trastevere</div>
+                <div class="activity-location">Via della Scala 40</div>
+              </div>
+              <span class="activity-cost activity-cost--free">0 €</span>
+            </li>
+            <li class="activity-item" data-od-id="activity-1-3">
+              <span class="activity-time">16:00</span>
+              <div class="activity-body">
+                <div class="activity-title">Spaziergang Trastevere</div>
+                <div class="activity-location">Altstadt</div>
+              </div>
+              <span class="activity-cost activity-cost--free">0 €</span>
+            </li>
+            <li class="activity-item" data-od-id="activity-1-4">
+              <span class="activity-time">19:30</span>
+              <div class="activity-body">
+                <div class="activity-title">Abendessen</div>
+                <div class="activity-location">Trattoria da Enzo</div>
+                <div class="activity-note">Reservierung um 19:00 bestätigt</div>
+              </div>
+              <span class="activity-cost">70 €</span>
+            </li>
+          </ul>
+        </article>
+
+        <!-- Day 2 -->
+        <article class="card day-card" data-od-id="day-2">
+          <div class="day-card__head">
+            <h2 class="day-card__title">Tag 2 · Mittwoch, 13. Mai</h2>
+            <span class="day-card__sum">Summe: 64 €</span>
+          </div>
+          <ul class="activity-list">
+            <li class="activity-item" data-od-id="activity-2-1">
+              <span class="activity-time">09:00</span>
+              <div class="activity-body">
+                <div class="activity-title">Kolosseum &amp; Forum Romanum</div>
+                <div class="activity-location">Piazza del Colosseo 1</div>
+                <div class="activity-note">Führung mit Ticket im Vorverkauf</div>
+              </div>
+              <span class="activity-cost">24 €</span>
+            </li>
+            <li class="activity-item" data-od-id="activity-2-2">
+              <span class="activity-time">13:00</span>
+              <div class="activity-body">
+                <div class="activity-title">Mittagessen Monti</div>
+                <div class="activity-location">Rione Monti</div>
+              </div>
+              <span class="activity-cost">20 €</span>
+            </li>
+            <li class="activity-item" data-od-id="activity-2-3">
+              <span class="activity-time">15:30</span>
+              <div class="activity-body">
+                <div class="activity-title">Trevi-Brunnen &amp; Pantheon</div>
+                <div class="activity-location">Centro Storico</div>
+              </div>
+              <span class="activity-cost activity-cost--free">0 €</span>
+            </li>
+            <li class="activity-item" data-od-id="activity-2-4">
+              <span class="activity-time">20:00</span>
+              <div class="activity-body">
+                <div class="activity-title">Gelato &amp; Abendbummel</div>
+                <div class="activity-location">Piazza Navona</div>
+              </div>
+              <span class="activity-cost">20 €</span>
+            </li>
+          </ul>
+        </article>
+
+        <!-- Day 3 -->
+        <article class="card day-card" data-od-id="day-3">
+          <div class="day-card__head">
+            <h2 class="day-card__title">Tag 3 · Donnerstag, 14. Mai</h2>
+            <span class="day-card__sum">Summe: 88 €</span>
+          </div>
+          <ul class="activity-list">
+            <li class="activity-item" data-od-id="activity-3-1">
+              <span class="activity-time">08:30</span>
+              <div class="activity-body">
+                <div class="activity-title">Vatikanische Museen</div>
+                <div class="activity-location">Viale Vaticano</div>
+                <div class="activity-note">Frühe Einlasskarte gebucht</div>
+              </div>
+              <span class="activity-cost">28 €</span>
+            </li>
+            <li class="activity-item" data-od-id="activity-3-2">
+              <span class="activity-time">14:00</span>
+              <div class="activity-body">
+                <div class="activity-title">Petersdom</div>
+                <div class="activity-location">Piazza San Pietro</div>
+              </div>
+              <span class="activity-cost activity-cost--free">0 €</span>
+            </li>
+            <li class="activity-item" data-od-id="activity-3-3">
+              <span class="activity-time">18:00</span>
+              <div class="activity-body">
+                <div class="activity-title">Aperitivo &amp; Abendessen</div>
+                <div class="activity-location">Prati</div>
+              </div>
+              <span class="activity-cost">60 €</span>
+            </li>
+          </ul>
+        </article>
+
+        <!-- Add-activity affordance (AC-04) -->
+        <article class="card day-card" id="activity-add" data-od-id="activity-add">
+          <div class="activity-add">
+            <span class="btn btn--secondary btn--sm">+ Aktivität für Tag 4 hinzufügen</span>
+          </div>
+        </article>
+      </section>
+
+      <!-- Side panel -->
+      <aside class="side-panel" data-od-id="side-panel">
+        <div class="card" data-od-id="side-trip-summary">
+          <h3 class="section-label">Reise</h3>
+          <div class="meta-row"><span class="meta-row__label">Zeitraum</span><span class="meta-row__value">12. – 18. Mai 2026</span></div>
+          <div class="meta-row"><span class="meta-row__label">Dauer</span><span class="meta-row__value">7 Tage</span></div>
+          <div class="meta-row"><span class="meta-row__label">Gesamtkosten</span><span class="meta-row__value">1.240 €</span></div>
+          <div class="flex gap-2 mt-3">
+            <a class="btn btn--secondary btn--sm" href="trip-form.html" data-od-id="btn-edit-trip">Umbenennen</a>
+            <button class="btn btn--danger btn--sm" id="open-delete" data-od-id="btn-delete-trip">Löschen</button>
+          </div>
+        </div>
+
+        <div class="card" data-od-id="side-budget-mini">
+          <div class="flex space-between items-center mb-3">
+            <h3 class="section-label" style="margin:0;">Budget</h3>
+            <a class="btn btn--ghost btn--sm" href="budget.html" data-od-id="link-budget">Details ›</a>
+          </div>
+          <div class="meta-row"><span class="meta-row__label">Ausgegeben</span><span class="meta-row__value">1.240 €</span></div>
+          <div class="meta-row"><span class="meta-row__label">Gesamtbudget</span><span class="meta-row__value">1.500 €</span></div>
+          <div class="progress mt-2">
+            <div class="progress__track"><div class="progress__fill" style="width:83%;"></div></div>
+            <span class="progress__label">83 %</span>
+          </div>
+        </div>
+
+        <div class="card" data-od-id="side-packlist-mini">
+          <div class="flex space-between items-center mb-3">
+            <h3 class="section-label" style="margin:0;">Packliste</h3>
+            <a class="btn btn--ghost btn--sm" href="packliste.html" data-od-id="link-packliste">Details ›</a>
+          </div>
+          <div class="meta-row"><span class="meta-row__label">Abgehakt</span><span class="meta-row__value">3 von 8</span></div>
+          <div class="progress mt-2">
+            <div class="progress__track"><div class="progress__fill" style="width:38%;"></div></div>
+            <span class="progress__label">38 %</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Delete confirmation dialog (AC-03) -->
+  <div class="dialog-overlay" id="delete-dialog" hidden data-od-id="delete-dialog">
+    <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="delete-title">
+      <h2 class="dialog__title" id="delete-title">Reise löschen?</h2>
+      <p class="dialog__body">„Rom“ wird mitsamt allen Aktivitäten, Budgetdaten und der Packliste dauerhaft gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.</p>
+      <div class="dialog__actions">
+        <button class="btn btn--secondary" id="cancel-delete" data-od-id="btn-cancel-delete">Abbrechen</button>
+        <button class="btn btn--danger" id="confirm-delete" data-od-id="btn-confirm-delete">Endgültig löschen</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Delete-confirmation dialog (AC-03): only on confirm does the trip disappear.
+    var dialog = document.getElementById('delete-dialog');
+    var openBtn = document.getElementById('open-delete');
+    var cancelBtn = document.getElementById('cancel-delete');
+    var confirmBtn = document.getElementById('confirm-delete');
+
+    function openDialog() { dialog.hidden = false; cancelBtn.focus(); }
+    function closeDialog() { dialog.hidden = true; openBtn.focus(); }
+
+    openBtn.addEventListener('click', openDialog);
+    cancelBtn.addEventListener('click', closeDialog);
+    dialog.addEventListener('click', function (e) { if (e.target === dialog) closeDialog(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !dialog.hidden) closeDialog(); });
+
+    confirmBtn.addEventListener('click', function () {
+      var TRIPS_KEY = 'reiseplaner.trips';
+      try {
+        var trips = JSON.parse(localStorage.getItem(TRIPS_KEY)) || [];
+        var rest = trips.filter(function (t) { return t.id !== 'rom'; });
+        localStorage.setItem(TRIPS_KEY, JSON.stringify(rest));
+      } catch (err) { /* ignore */ }
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>

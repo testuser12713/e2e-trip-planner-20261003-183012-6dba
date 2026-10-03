@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reiseplaner — Reise anlegen</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header" data-od-id="app-header">
+    <div class="app-header__inner">
+      <a class="brand" href="index.html" data-od-id="brand">
+        <span class="brand__mark" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M8 14.5C5 11 2.5 8.6 2.5 5.8A3.3 3.3 0 0 1 8 3.6a3.3 3.3 0 0 1 5.5 2.2C13.5 8.6 11 11 8 14.5Z" stroke="#fff" stroke-width="1.5"/>
+            <circle cx="8" cy="5.8" r="1.4" fill="#fff"/>
+          </svg>
+        </span>
+        Reiseplaner
+      </a>
+      <nav class="nav-tabs" aria-label="Hauptnavigation">
+        <a class="nav-tabs__item is-active" href="index.html" aria-current="page" data-od-id="nav-reisen">Reisen</a>
+        <a class="nav-tabs__item" href="trip-detail.html" data-od-id="nav-tagesplan">Tagesplan</a>
+        <a class="nav-tabs__item" href="budget.html" data-od-id="nav-budget">Budget</a>
+        <a class="nav-tabs__item" href="packliste.html" data-od-id="nav-packliste">Packliste</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-container" data-od-id="trip-form-page">
+    <div class="trip-context">
+      <a class="trip-context__back" href="index.html" data-od-id="back-to-list">‹ Zurück zur Reiseliste</a>
+    </div>
+
+    <div class="page-head">
+      <div>
+        <h1 class="page-title" data-od-id="page-title">Neue Reise anlegen</h1>
+        <p class="page-subtitle">Gib Ziel und Zeitraum an. Pflichtfelder sind mit * markiert.</p>
+      </div>
+    </div>
+
+    <div class="card" style="max-width: 640px;" data-od-id="trip-form-card">
+      <form id="trip-form" novalidate data-od-id="trip-form">
+        <div class="form-field">
+          <label class="form-label" for="ziel">Ziel *</label>
+          <input class="form-control" type="text" id="ziel" name="ziel" placeholder="z. B. Rom, Lissabon, Tokio" autocomplete="off" />
+          <p class="form-error" id="ziel-error" hidden role="alert"></p>
+        </div>
+
+        <div class="form-grid form-grid--2">
+          <div class="form-field">
+            <label class="form-label" for="start">Startdatum *</label>
+            <input class="form-control" type="date" id="start" name="start" />
+            <p class="form-error" id="start-error" hidden role="alert"></p>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="ende">Enddatum *</label>
+            <input class="form-control" type="date" id="ende" name="ende" />
+            <p class="form-error" id="ende-error" hidden role="alert"></p>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="budget">Gesamtbudget (optional)</label>
+          <input class="form-control" type="number" id="budget" name="budget" min="0" step="1" placeholder="z. B. 1500" />
+          <p class="form-hint">Ohne Angabe werden keine Überschreitungen markiert.</p>
+        </div>
+
+        <div class="notice notice--info mt-3" hidden id="form-success" role="status" data-od-id="form-success">
+          Reise gespeichert. Du wirst zur Reiseliste weitergeleitet.
+        </div>
+
+        <div class="form-actions mt-4">
+          <a class="btn btn--secondary" href="index.html" data-od-id="btn-cancel">Abbrechen</a>
+          <button class="btn btn--primary" type="submit" data-od-id="btn-save">Reise speichern</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    // AC-02: validation with immediate, understandable error messages.
+    var form = document.getElementById('trip-form');
+    var ziel = document.getElementById('ziel');
+    var start = document.getElementById('start');
+    var ende = document.getElementById('ende');
+
+    function setError(input, message) {
+      var errEl = document.getElementById(input.id + '-error');
+      input.classList.toggle('is-error', !!message);
+      if (message) {
+        errEl.textContent = message;
+        errEl.hidden = false;
+      } else {
+        errEl.hidden = true;
+        errEl.textContent = '';
+      }
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var valid = true;
+
+      if (!ziel.value.trim()) {
+        setError(ziel, 'Bitte ein Ziel eingeben.');
+        valid = false;
+      } else {
+        setError(ziel, null);
+      }
+
+      if (!start.value) {
+        setError(start, 'Bitte ein Startdatum wählen.');
+        valid = false;
+      } else {
+        setError(start, null);
+      }
+
+      if (!ende.value) {
+        setError(ende, 'Bitte ein Enddatum wählen.');
+        valid = false;
+      } else {
+        setError(ende, null);
+      }
+
+      if (start.value && ende.value && new Date(ende.value) < new Date(start.value)) {
+        setError(ende, 'Das Enddatum liegt vor dem Startdatum.');
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      // Persist new trip (AC-09) and show success state.
+      var TRIPS_KEY = 'reiseplaner.trips';
+      try {
+        var trips = JSON.parse(localStorage.getItem(TRIPS_KEY)) || [];
+        trips.push({
+          id: 'neu-' + Date.now(),
+          ziel: ziel.value.trim(),
+          start: start.value,
+          ende: ende.value,
+          kosten: 0
+        });
+        localStorage.setItem(TRIPS_KEY, JSON.stringify(trips));
+      } catch (err) { /* ignore, mock only */ }
+
+      document.getElementById('form-success').hidden = false;
+      setTimeout(function () { window.location.href = 'index.html'; }, 900);
+    });
+  </script>
+</body>
+</html>

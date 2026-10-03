@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reiseplaner — Meine Reisen</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header" data-od-id="app-header">
+    <div class="app-header__inner">
+      <a class="brand" href="index.html" data-od-id="brand">
+        <span class="brand__mark" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M8 14.5C5 11 2.5 8.6 2.5 5.8A3.3 3.3 0 0 1 8 3.6a3.3 3.3 0 0 1 5.5 2.2C13.5 8.6 11 11 8 14.5Z" stroke="#fff" stroke-width="1.5"/>
+            <circle cx="8" cy="5.8" r="1.4" fill="#fff"/>
+          </svg>
+        </span>
+        Reiseplaner
+      </a>
+      <nav class="nav-tabs" aria-label="Hauptnavigation">
+        <a class="nav-tabs__item is-active" href="index.html" aria-current="page" data-od-id="nav-reisen">Reisen</a>
+        <a class="nav-tabs__item" href="trip-detail.html" data-od-id="nav-tagesplan">Tagesplan</a>
+        <a class="nav-tabs__item" href="budget.html" data-od-id="nav-budget">Budget</a>
+        <a class="nav-tabs__item" href="packliste.html" data-od-id="nav-packliste">Packliste</a>
+      </nav>
+      <a class="btn btn--primary" href="trip-form.html" data-od-id="btn-new-trip">+ Neue Reise</a>
+    </div>
+  </header>
+
+  <main class="page-container" data-od-id="trip-list-page">
+    <div class="page-head">
+      <div>
+        <h1 class="page-title" data-od-id="page-title">Meine Reisen</h1>
+        <p class="page-subtitle">3 Reisen geplant · Planung, Budget und Packliste für jede Reise</p>
+      </div>
+    </div>
+
+    <section class="trip-list" aria-label="Reiseliste" data-od-id="trip-list">
+      <!-- Trip 1 -->
+      <a class="card card--interactive trip-card" href="trip-detail.html" data-od-id="trip-card-rom">
+        <div class="trip-card__main">
+          <div class="trip-card__title">Rom</div>
+          <div class="trip-card__dates">12. – 18. Mai 2026 · 7 Tage</div>
+        </div>
+        <div class="trip-card__stats">
+          <div class="trip-card__stat">
+            <span class="trip-card__stat-label">Gesamtkosten</span>
+            <span class="trip-card__stat-value">1.240 €</span>
+          </div>
+          <span class="trip-card__chevron" aria-hidden="true">›</span>
+        </div>
+      </a>
+
+      <!-- Trip 2 -->
+      <a class="card card--interactive trip-card" href="trip-detail.html" data-od-id="trip-card-lissabon">
+        <div class="trip-card__main">
+          <div class="trip-card__title">Lissabon</div>
+          <div class="trip-card__dates">3. – 9. September 2026 · 7 Tage</div>
+        </div>
+        <div class="trip-card__stats">
+          <div class="trip-card__stat">
+            <span class="trip-card__stat-label">Gesamtkosten</span>
+            <span class="trip-card__stat-value">980 €</span>
+          </div>
+          <span class="trip-card__chevron" aria-hidden="true">›</span>
+        </div>
+      </a>
+
+      <!-- Trip 3 -->
+      <a class="card card--interactive trip-card" href="trip-detail.html" data-od-id="trip-card-tokio">
+        <div class="trip-card__main">
+          <div class="trip-card__title">Tokio</div>
+          <div class="trip-card__dates">22. Oktober – 5. November 2026 · 15 Tage</div>
+        </div>
+        <div class="trip-card__stats">
+          <div class="trip-card__stat">
+            <span class="trip-card__stat-label">Gesamtkosten</span>
+            <span class="trip-card__stat-value">2.960 €</span>
+          </div>
+          <span class="trip-card__chevron" aria-hidden="true">›</span>
+        </div>
+      </a>
+    </section>
+
+    <!-- Empty state (shown when no trips exist) -->
+    <section class="empty-state" hidden data-od-id="trip-empty-state">
+      <h2 class="empty-state__title">Noch keine Reise geplant</h2>
+      <p class="empty-state__desc">Lege deine erste Reise an, um Tagesplan, Budget und Packliste zu verwalten.</p>
+      <a class="btn btn--primary" href="trip-form.html" data-od-id="btn-empty-new-trip">Reise anlegen</a>
+    </section>
+  </main>
+
+  <script>
+    // Demonstrates AC-01: empty state vs. populated list.
+    // In the real product this is derived from the trip store (localStorage).
+    // The seeded list is shown by default for review purposes.
+    var TRIPS_KEY = 'reiseplaner.trips';
+    var seeded = [
+      { id: 'rom', ziel: 'Rom', start: '2026-05-12', ende: '2026-05-18', kosten: 1240 },
+      { id: 'lissabon', ziel: 'Lissabon', start: '2026-09-03', ende: '2026-09-09', kosten: 980 },
+      { id: 'tokio', ziel: 'Tokio', start: '2026-10-22', ende: '2026-11-05', kosten: 2960 }
+    ];
+    try {
+      if (!localStorage.getItem(TRIPS_KEY)) {
+        localStorage.setItem(TRIPS_KEY, JSON.stringify(seeded));
+      }
+      var trips = JSON.parse(localStorage.getItem(TRIPS_KEY)) || [];
+      document.querySelector('[data-od-id="trip-list"]').hidden = trips.length === 0;
+      document.querySelector('[data-od-id="trip-empty-state"]').hidden = trips.length > 0;
+    } catch (e) {
+      /* corrupt localStorage -> keep seeded list visible, never crash (AC-09) */
+    }
+  </script>
+</body>
+</html>

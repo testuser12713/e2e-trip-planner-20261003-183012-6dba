@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reiseplaner — Budget Rom</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header" data-od-id="app-header">
+    <div class="app-header__inner">
+      <a class="brand" href="index.html" data-od-id="brand">
+        <span class="brand__mark" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M8 14.5C5 11 2.5 8.6 2.5 5.8A3.3 3.3 0 0 1 8 3.6a3.3 3.3 0 0 1 5.5 2.2C13.5 8.6 11 11 8 14.5Z" stroke="#fff" stroke-width="1.5"/>
+            <circle cx="8" cy="5.8" r="1.4" fill="#fff"/>
+          </svg>
+        </span>
+        Reiseplaner
+      </a>
+      <nav class="nav-tabs" aria-label="Hauptnavigation">
+        <a class="nav-tabs__item" href="index.html" data-od-id="nav-reisen">Reisen</a>
+        <a class="nav-tabs__item" href="trip-detail.html" data-od-id="nav-tagesplan">Tagesplan</a>
+        <a class="nav-tabs__item is-active" href="budget.html" aria-current="page" data-od-id="nav-budget">Budget</a>
+        <a class="nav-tabs__item" href="packliste.html" data-od-id="nav-packliste">Packliste</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-container" data-od-id="budget-page">
+    <div class="trip-context">
+      <a class="trip-context__back" href="index.html" data-od-id="back-to-list">‹ Alle Reisen</a>
+      <span class="trip-context__title" data-od-id="trip-name">Rom</span>
+      <span class="badge badge--neutral" data-od-id="trip-dates">12. – 18. Mai 2026</span>
+    </div>
+
+    <div class="page-head">
+      <div>
+        <h1 class="page-title" data-od-id="page-title">Budget</h1>
+        <p class="page-subtitle">Ausgaben je Kategorie · Summe wird automatisch aus den Aktivitäten berechnet</p>
+      </div>
+    </div>
+
+    <!-- Total + optional budget -->
+    <div class="card mb-3" data-od-id="budget-summary">
+      <div class="flex space-between items-center wrap gap-3">
+        <div>
+          <div class="section-label" style="margin-bottom:4px;">Gesamtausgaben</div>
+          <div class="budget-total" data-od-id="budget-total-spend">1.240 €</div>
+        </div>
+        <div class="form-field" style="margin:0; min-width: 200px;">
+          <label class="form-label" for="total-budget">Gesamtbudget (optional)</label>
+          <input class="form-control" type="number" id="total-budget" min="0" step="10" value="1500" />
+        </div>
+      </div>
+
+      <div class="progress mt-3">
+        <div class="progress__track">
+          <div class="progress__fill" id="budget-fill" style="width:83%;"></div>
+        </div>
+        <span class="progress__label" id="budget-pct">83 %</span>
+      </div>
+
+      <div class="notice notice--warning mt-3" id="over-budget-notice" hidden role="alert" data-od-id="over-budget-notice">
+        Budget überschritten: Die Ausgaben liegen über dem gesetzten Gesamtbudget.
+      </div>
+    </div>
+
+    <!-- Per-category bars (AC-06) -->
+    <section class="card" data-od-id="budget-categories">
+      <h2 class="section-label">Ausgaben je Kategorie</h2>
+      <div class="budget-list" id="budget-list" data-od-id="budget-list">
+        <div class="budget-row" data-od-id="budget-row-unterkunft">
+          <div class="budget-row__head">
+            <span class="budget-row__label">Unterkunft</span>
+            <span class="budget-row__amount">420 €</span>
+          </div>
+          <div class="budget-bar"><div class="budget-bar__fill" style="width:100%;"></div></div>
+        </div>
+        <div class="budget-row" data-od-id="budget-row-essen">
+          <div class="budget-row__head">
+            <span class="budget-row__label">Essen &amp; Trinken</span>
+            <span class="budget-row__amount">260 €</span>
+          </div>
+          <div class="budget-bar"><div class="budget-bar__fill" style="width:62%;"></div></div>
+        </div>
+        <div class="budget-row" data-od-id="budget-row-transport">
+          <div class="budget-row__head">
+            <span class="budget-row__label">Transport</span>
+            <span class="budget-row__amount">180 €</span>
+          </div>
+          <div class="budget-bar"><div class="budget-bar__fill" style="width:43%;"></div></div>
+        </div>
+        <div class="budget-row" data-od-id="budget-row-sehenswuerdigkeiten">
+          <div class="budget-row__head">
+            <span class="budget-row__label">Sehenswürdigkeiten</span>
+            <span class="budget-row__amount">140 €</span>
+          </div>
+          <div class="budget-bar"><div class="budget-bar__fill" style="width:33%;"></div></div>
+        </div>
+        <div class="budget-row" data-od-id="budget-row-shopping">
+          <div class="budget-row__head">
+            <span class="budget-row__label">Shopping</span>
+            <span class="budget-row__amount">100 €</span>
+          </div>
+          <div class="budget-bar"><div class="budget-bar__fill" style="width:24%;"></div></div>
+        </div>
+        <div class="budget-row" data-od-id="budget-row-aktivitaeten">
+          <div class="budget-row__head">
+            <span class="budget-row__label">Aktivitäten</span>
+            <span class="budget-row__amount">90 €</span>
+          </div>
+          <div class="budget-bar"><div class="budget-bar__fill" style="width:21%;"></div></div>
+        </div>
+        <div class="budget-row" data-od-id="budget-row-sonstiges">
+          <div class="budget-row__head">
+            <span class="budget-row__label">Sonstiges</span>
+            <span class="budget-row__amount">50 €</span>
+          </div>
+          <div class="budget-bar"><div class="budget-bar__fill" style="width:12%;"></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // AC-07: when an optional total budget is set, an overage is clearly marked.
+    var TOTAL_SPEND = 1240;
+    var budgetInput = document.getElementById('total-budget');
+    var fill = document.getElementById('budget-fill');
+    var pct = document.getElementById('budget-pct');
+    var notice = document.getElementById('over-budget-notice');
+
+    function updateBudget() {
+      var budget = parseFloat(budgetInput.value);
+      if (!budget || budget <= 0) {
+        fill.style.width = '0%';
+        pct.textContent = '–';
+        notice.hidden = true;
+        return;
+      }
+      var ratio = Math.min((TOTAL_SPEND / budget) * 100, 100);
+      fill.style.width = ratio + '%';
+      pct.textContent = Math.round((TOTAL_SPEND / budget) * 100) + ' %';
+      var over = TOTAL_SPEND > budget;
+      fill.classList.toggle('progress__fill--over', over);
+      notice.hidden = !over;
+    }
+
+    budgetInput.addEventListener('input', updateBudget);
+    updateBudget();
+  </script>
+</body>
+</html>

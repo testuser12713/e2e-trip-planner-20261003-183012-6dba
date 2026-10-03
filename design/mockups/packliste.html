@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reiseplaner — Packliste Rom</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header" data-od-id="app-header">
+    <div class="app-header__inner">
+      <a class="brand" href="index.html" data-od-id="brand">
+        <span class="brand__mark" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M8 14.5C5 11 2.5 8.6 2.5 5.8A3.3 3.3 0 0 1 8 3.6a3.3 3.3 0 0 1 5.5 2.2C13.5 8.6 11 11 8 14.5Z" stroke="#fff" stroke-width="1.5"/>
+            <circle cx="8" cy="5.8" r="1.4" fill="#fff"/>
+          </svg>
+        </span>
+        Reiseplaner
+      </a>
+      <nav class="nav-tabs" aria-label="Hauptnavigation">
+        <a class="nav-tabs__item" href="index.html" data-od-id="nav-reisen">Reisen</a>
+        <a class="nav-tabs__item" href="trip-detail.html" data-od-id="nav-tagesplan">Tagesplan</a>
+        <a class="nav-tabs__item" href="budget.html" data-od-id="nav-budget">Budget</a>
+        <a class="nav-tabs__item is-active" href="packliste.html" aria-current="page" data-od-id="nav-packliste">Packliste</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-container" data-od-id="packliste-page">
+    <div class="trip-context">
+      <a class="trip-context__back" href="index.html" data-od-id="back-to-list">‹ Alle Reisen</a>
+      <span class="trip-context__title" data-od-id="trip-name">Rom</span>
+      <span class="badge badge--neutral" data-od-id="trip-dates">12. – 18. Mai 2026</span>
+    </div>
+
+    <div class="page-head">
+      <div>
+        <h1 class="page-title" data-od-id="page-title">Packliste</h1>
+        <p class="page-subtitle">Hake ab, was du eingepackt hast. Zum Umbenennen doppelklicken.</p>
+      </div>
+    </div>
+
+    <div class="card" style="max-width: 640px;" data-od-id="packliste-card">
+      <!-- Progress (AC-08) -->
+      <div class="packlist-progress" data-od-id="packlist-progress">
+        <div class="progress">
+          <div class="progress__track">
+            <div class="progress__fill" id="pack-fill" style="width:38%;"></div>
+          </div>
+          <span class="progress__label" id="pack-label">3 von 8 · 38 %</span>
+        </div>
+      </div>
+
+      <ul class="packlist" id="packlist" data-od-id="packlist">
+        <li class="packlist__item" data-od-id="pack-item-pass">
+          <input class="packlist__check" type="checkbox" id="item-pass" checked />
+          <label class="packlist__label is-done" for="item-pass">Reisepass</label>
+          <button class="btn btn--ghost btn--sm" data-del aria-label="Reisepass löschen">✕</button>
+        </li>
+        <li class="packlist__item" data-od-id="pack-item-ladegeraet">
+          <input class="packlist__check" type="checkbox" id="item-ladegeraet" checked />
+          <label class="packlist__label is-done" for="item-ladegeraet">Ladegerät (Smartphone)</label>
+          <button class="btn btn--ghost btn--sm" data-del aria-label="Ladegerät löschen">✕</button>
+        </li>
+        <li class="packlist__item" data-od-id="pack-item-adapter">
+          <input class="packlist__check" type="checkbox" id="item-adapter" checked />
+          <label class="packlist__label is-done" for="item-adapter">Reiseadapter (Typ L)</label>
+          <button class="btn btn--ghost btn--sm" data-del aria-label="Reiseadapter löschen">✕</button>
+        </li>
+        <li class="packlist__item" data-od-id="pack-item-sonnencreme">
+          <input class="packlist__check" type="checkbox" id="item-sonnencreme" />
+          <label class="packlist__label" for="item-sonnencreme">Sonnencreme LSF 50</label>
+          <button class="btn btn--ghost btn--sm" data-del aria-label="Sonnencreme löschen">✕</button>
+        </li>
+        <li class="packlist__item" data-od-id="pack-item-schuhe">
+          <input class="packlist__check" type="checkbox" id="item-schuhe" />
+          <label class="packlist__label" for="item-schuhe">Bequeme Schuhe</label>
+          <button class="btn btn--ghost btn--sm" data-del aria-label="Bequeme Schuhe löschen">✕</button>
+        </li>
+        <li class="packlist__item" data-od-id="pack-item-regenjacke">
+          <input class="packlist__check" type="checkbox" id="item-regenjacke" />
+          <label class="packlist__label" for="item-regenjacke">Leichte Regenjacke</label>
+          <button class="btn btn--ghost btn--sm" data-del aria-label="Leichte Regenjacke löschen">✕</button>
+        </li>
+        <li class="packlist__item" data-od-id="pack-item-apotheke">
+          <input class="packlist__check" type="checkbox" id="item-apotheke" />
+          <label class="packlist__label" for="item-apotheke">Reiseapotheke</label>
+          <button class="btn btn--ghost btn--sm" data-del aria-label="Reiseapotheke löschen">✕</button>
+        </li>
+        <li class="packlist__item" data-od-id="pack-item-powerbank">
+          <input class="packlist__check" type="checkbox" id="item-powerbank" />
+          <label class="packlist__label" for="item-powerbank">Powerbank</label>
+          <button class="btn btn--ghost btn--sm" data-del aria-label="Powerbank löschen">✕</button>
+        </li>
+      </ul>
+
+      <!-- Add item -->
+      <form class="flex gap-2 mt-3" id="add-form" data-od-id="pack-add-form">
+        <label class="sr-only" for="new-item">Neuer Eintrag</label>
+        <input class="form-control" type="text" id="new-item" placeholder="Neuer Eintrag …" autocomplete="off" />
+        <button class="btn btn--primary" type="submit" data-od-id="btn-add-item">Hinzufügen</button>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    // AC-08: add, rename, delete and check items; progress shows "done of total" with percent.
+    var list = document.getElementById('packlist');
+    var fill = document.getElementById('pack-fill');
+    var label = document.getElementById('pack-label');
+    var addForm = document.getElementById('add-form');
+    var newInput = document.getElementById('new-item');
+
+    function refresh() {
+      var items = list.querySelectorAll('.packlist__item');
+      var total = items.length;
+      var done = 0;
+      items.forEach(function (li) {
+        var cb = li.querySelector('.packlist__check');
+        var lbl = li.querySelector('.packlist__label');
+        if (cb.checked) done++;
+        lbl.classList.toggle('is-done', cb.checked);
+      });
+      var pct = total === 0 ? 0 : Math.round((done / total) * 100);
+      fill.style.width = pct + '%';
+      label.textContent = done + ' von ' + total + ' · ' + pct + ' %';
+    }
+
+    list.addEventListener('change', function (e) {
+      if (e.target.classList.contains('packlist__check')) refresh();
+    });
+
+    list.addEventListener('click', function (e) {
+      if (e.target.hasAttribute('data-del')) {
+        e.target.closest('.packlist__item').remove();
+        refresh();
+      }
+    });
+
+    addForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var val = newInput.value.trim();
+      if (!val) return;
+      var id = 'item-' + Date.now();
+      var li = document.createElement('li');
+      li.className = 'packlist__item';
+      li.innerHTML =
+        '<input class="packlist__check" type="checkbox" id="' + id + '" />' +
+        '<label class="packlist__label" for="' + id + '"></label>' +
+        '<button class="btn btn--ghost btn--sm" data-del aria-label="Eintrag löschen">✕</button>';
+      li.querySelector('.packlist__label').textContent = val;
+      list.appendChild(li);
+      newInput.value = '';
+      refresh();
+    });
+
+    // Rename via double-click -> inline input (AC-08).
+    list.addEventListener('dblclick', function (e) {
+      var lbl = e.target.closest('.packlist__label');
+      if (!lbl) return;
+      var input = document.createElement('input');
+      input.type = 'text';
+      input.className = 'form-control';
+      input.style.minHeight = '36px';
+      input.value = lbl.textContent;
+      lbl.replaceWith(input);
+      input.focus();
+      input.select();
+      function commit() {
+        var newLbl = document.createElement('label');
+        newLbl.className = 'packlist__label';
+        newLbl.setAttribute('for', input.closest('.packlist__item').querySelector('.packlist__check').id);
+        newLbl.textContent = input.value.trim() || 'Unbenannter Eintrag';
+        input.replaceWith(newLbl);
+      }
+      input.addEventListener('blur', commit);
+      input.addEventListener('keydown', function (ev) {
+        if (ev.key === 'Enter') { commit(); }
+        if (ev.key === 'Escape') { commit(); }
+      });
+    });
+
+    refresh();
+  </script>
+</body>
+</html>
